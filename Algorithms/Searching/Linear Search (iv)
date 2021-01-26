@@ -1,0 +1,33 @@
+Problem Link: https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/square-transaction-20
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	long int t,q,l;
+	vector<long> A;
+	cin>>t;
+	cin>>l;
+	A.push_back(l);
+	for(int i=1;i<t;i++)
+	{
+		cin>>l;
+		A.push_back(l+A[i-1]);
+	}
+	cin>>q;
+	int qu,i=0;
+	while(q--)
+	{
+		cin>>qu;
+		while(qu>A[i] and i<t)
+		{
+		 i++;
+		}
+		if(i<t)
+		cout<<i+1<<endl;
+		else
+		cout<<-1<<endl;
+		i=0;
+	}
+}
