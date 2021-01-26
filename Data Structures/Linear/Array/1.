@@ -1,0 +1,83 @@
+Problem Link: https://www.hackerrank.com/challenges/organizing-containers-of-balls/submissions/code/195408861
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the organizingContainers function below.
+string organizingContainers(vector<vector<int>> container) {
+    vector<int> s1,s2;
+    int sum=0;
+for(int i=0;i<container[0].size();i++)
+{
+    for(int j=0;j<container[0].size();j++)
+    {
+        sum+=container[i][j];
+    }
+    s1.push_back(sum);
+    sum=0;
+}
+for(int i=0;i<container[0].size();i++)
+{
+    for(int j=0;j<container[0].size();j++)
+    {
+        sum+=container[j][i];
+    }
+    s2.push_back(sum);
+    sum=0;
+}
+sort(s1.begin(),s1.end());
+sort(s2.begin(),s2.end());
+bool f=true;
+for(int i=0;i<s2.size();i++)
+{
+    if(s1[i]!=s2[i])
+    {
+        f=false;
+        break;
+    }   
+}
+string s="";
+if(f==true)
+s="Possible";
+else {
+s="Impossible";
+}
+
+return s;
+}
+
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int q;
+    cin >> q;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        int n;
+        cin >> n;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        vector<vector<int>> container(n);
+        for (int i = 0; i < n; i++) {
+            container[i].resize(n);
+
+            for (int j = 0; j < n; j++) {
+                cin >> container[i][j];
+            }
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        string result = organizingContainers(container);
+
+        fout << result << "\n";
+    }
+
+    fout.close();
+
+    return 0;
+}
