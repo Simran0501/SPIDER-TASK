@@ -1,0 +1,75 @@
+Problem Link: https://www.hackerrank.com/challenges/encryption/submissions/code/192939573
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the encryption function below.
+string encryption(string s) {
+int i=0,ct=0;
+s.erase(remove(s.begin(), s.end(), ' '), s.end()); 
+int l=s.length();
+float ro=pow(l,0.5);
+int m=floor(ro);
+int c=ceil(ro);
+if(m*c<l)
+{
+    m=c;
+}
+char a[m][c];
+for(i=0;i<m;i++)
+{
+    for(int j=0;j<c;j++)
+    {
+        a[i][j]=' ';
+    }
+}
+int k=0;
+for(i=0;i<m;i++)
+{
+    for(int j=0;j<c && k!=l;j++)
+    {
+        a[i][j]=s[k];
+        k++;
+    }
+}
+for(i=0;i<m;i++)
+{
+    for(int j=0;j<c;j++)
+    {   
+        cout<<a[i][j];
+    }
+    cout<<endl;
+}
+string n="";
+
+for(i=0;i<c;i++)
+{
+    for(int j=0;j<m;j++)
+    {
+        if(a[j][i]!=' ')
+        n+=a[j][i];
+    }
+    n+=" ";
+}
+n.pop_back();
+//cout<<n.length();
+return n;
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = encryption(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
