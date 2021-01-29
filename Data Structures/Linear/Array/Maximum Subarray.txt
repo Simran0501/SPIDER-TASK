@@ -1,0 +1,44 @@
+Problem Link: https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1#
+
+#include<bits/stdc++.h>
+using namespace std;
+int maxSubarraySum(int arr[], int n){
+    int max_g=INT_MIN;
+    int max_c=0,s=0,end=0,start=0;
+    for(int i=0;i<n;i++)
+    {
+        max_c+=arr[i];
+        if(max_g<max_c)
+        {
+            max_g=max_c;
+            start=s;
+            end=i;
+        }
+        if(max_c<0)
+        {
+            max_c=0;
+            s=i+1;
+        }
+    }
+    return max_g;
+    
+}
+
+int main()
+{
+    int t,n;
+    
+    cin>>t; 
+    while(t--)
+    {
+        
+        cin>>n;
+        
+        int a[n];
+        
+        for(int i=0;i<n;i++)
+            cin>>a[i]; 
+        
+        cout << maxSubarraySum(a, n) << endl;
+    }
+}
