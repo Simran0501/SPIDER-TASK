@@ -1,0 +1,74 @@
+Problem Link: https://leetcode.com/problems/valid-parentheses/submissions/
+
+class Solution {
+public:
+    bool isValid(string s) {
+        char ar[s.length()];
+        int k=0;
+        int ct=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]=='(' || s[i]=='{' || s[i]=='[')
+            {
+                ar[k]=s[i];
+                k++;
+                ct++;
+            }
+            else if(s[i]==')')
+            {
+                if(k>0)
+                {
+                if(ar[k-1]=='(')
+                {
+                    ct--;
+                    k--;
+                }
+                else
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if(s[i]==']')
+            {
+                if(k>0)
+                {
+                if(ar[k-1]=='[')
+                {
+                    ct--;
+                    k--;
+                }
+                else
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if(s[i]=='}')
+            {
+                if(k>0)
+                {
+                if(ar[k-1]=='{')
+                {
+                    ct--;
+                    k--;
+                }
+                else
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        if(ct==0)
+            return true;
+        else
+            return false;
+    }
+};
